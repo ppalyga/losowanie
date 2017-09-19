@@ -5,14 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Losowanie - klient vs. serwer</title>
+    <title>Zgadnij liczbę - Klient vs. Serwer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
-    <button id="losuj">
-        Wylosuj liczbę
-    </button>
-<textarea name="" id="" cols="100" rows="30"></textarea>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-3 text-center"><strong>Zgadnij liczbę</strong></h1>
+            <h2 class="display-4 text-center">Klient vs. Serwer</h2>
+            <textarea></textarea>
+
+            <p>Nieniejsza aplikacja typu klient-serwer zbudowana została z wykorzystaniem serwera NodeJS + Express. Po stronie
+                klienta wykorzystywana jest biblioteka jQuery (żadania AJAX) oraz Bootstrap (ostylowanie).</p>
+            <p>Przy połączeniu serwer generuje liczbę z zakresu 1-10000. Klient generuje liczbę z tego samego zakresu i wysyła
+                ją do serwera. Serwer odsyła informację czy liczba jest mniejsza, większa czy taka sama, jak wygenerowana
+                przez niego. Jeśli liczba nie jest taka sama, klient próbuje po raz kolejny, tym razem generując już liczbę
+                z nowego zakresu, dostosowanego do poprzedniej odpowiedzi serwera. Aplikacja kończy działanie, kiedy klient zgaduje liczbę.</p>
+
+            <button class="btn btn-primary btn-block">
+          Wylosuj liczbę
+        </button>
+            <button class="btn btn-danger btn-block">
+            Resetuj
+        </button>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>

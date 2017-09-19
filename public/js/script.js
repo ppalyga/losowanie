@@ -1,5 +1,7 @@
 $(document).ready(function() {
-  $('#losuj').click(function() {
+  $('button:first-of-type').click(function(e) {
+    $(e.target).prop('disabled', true);
+
     $.ajax({
       type: 'GET',
       url: '/losuj',
@@ -70,5 +72,11 @@ $(document).ready(function() {
         console.log('Wystąpił błąd w połączeniu :(');
       }
     });
+  });
+
+  $('button:nth-of-type(2)').click(function() {
+    $('textarea').val('');
+
+    $('button:first-of-type').prop('disabled', false);
   });
 });
