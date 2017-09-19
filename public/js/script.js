@@ -1,7 +1,9 @@
 $(document).ready(function() {
+  // Zablokowanie możliwości ponownego uruchomienia aplikacji przed zakoczeniem jej działania
   $('button:first-of-type').click(function(e) {
     $(e.target).prop('disabled', true);
 
+    // Żądanie wylosowania liczby przez serwer
     $.ajax({
       type: 'GET',
       url: '/losuj',
@@ -10,16 +12,24 @@ $(document).ready(function() {
           'SERWER: Połączenie ustanowione, wylosowano liczbę. Jaka to liczba?'
         );
 
-        var min = 1;
-        var max = 10000;
-
+        //Konfiguracja aktualnego zakresu i generowania zgadywanych liczb
         function generateNumber(min, max) {
           return Math.floor(Math.random() * (max - min + 1)) + min;
         }
-        var numberToCheck = generateNumber(min, max);
-        var getNumberStatus = null;
 
+        var min = 1,
+          max = 10000,
+          numberToCheck = generateNumber(min, max);
+
+        // Funkcja wysyłająca żądanie do serwera o sprawdzenie poprawności liczby
         function checkStatus(numberToCheck) {
+          $('textarea').val(
+            $('textarea').val() +
+              '\nKLIENT: Czy wylosowana liczba to ' +
+              numberToCheck +
+              '?'
+          );
+
           $.ajax({
             type: 'POST',
             url: '/sprawdz',
@@ -27,32 +37,23 @@ $(document).ready(function() {
               number: numberToCheck
             },
             success: function(data) {
-              $('textarea').val(
-                $('textarea').val() +
-                  '\nKLIENT: Czy wylosowana liczba to ' +
-                  numberToCheck +
-                  '?'
-              );
-
               if (data.status === 0) {
                 $('textarea').val(
                   $('textarea').val() +
                     '\nSERWER: Wylosowana liczba jest większa.'
                 );
-
+                // Zmiana zakresu generowanych liczb
                 min = numberToCheck + 1;
                 numberToCheck = generateNumber(min, max);
-
                 checkStatus(numberToCheck);
               } else if (data.status === 1) {
                 $('textarea').val(
                   $('textarea').val() +
                     '\nSERWER: Wylosowana liczba jest mniejsza.'
                 );
-
+                // Zmiana zakresu generowanych liczb
                 max = numberToCheck - 1;
                 numberToCheck = generateNumber(min, max);
-
                 checkStatus(numberToCheck);
               } else if (data.status === 2) {
                 $('textarea').val(
@@ -61,7 +62,7 @@ $(document).ready(function() {
               }
             },
             error: function() {
-              console.log('Wystąpił błąd w połączeniu :(');
+              $('textarea').val('Wystąpił błąd w połączeniu z serwerem');
             }
           });
         }
@@ -69,14 +70,14 @@ $(document).ready(function() {
         checkStatus(numberToCheck);
       },
       error: function() {
-        console.log('Wystąpił błąd w połączeniu :(');
+        $('textarea').val('Wystąpił błąd w połączeniu z serwerem');
       }
     });
   });
 
+  //   Reset stanu aplikacji
   $('button:nth-of-type(2)').click(function() {
     $('textarea').val('');
-
     $('button:first-of-type').prop('disabled', false);
   });
 });

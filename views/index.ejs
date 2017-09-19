@@ -16,26 +16,29 @@
         <div class="jumbotron">
             <h1 class="display-3 text-center"><strong>Zgadnij liczbę</strong></h1>
             <h2 class="display-4 text-center">Klient vs. Serwer</h2>
+
             <textarea></textarea>
 
-            <p>Nieniejsza aplikacja typu klient-serwer zbudowana została z wykorzystaniem serwera NodeJS + Express. Po stronie
-                klienta wykorzystywana jest biblioteka jQuery (żadania AJAX) oraz Bootstrap (ostylowanie).</p>
+            <p>Niniejsza aplikacja typu klient-serwer zbudowana została z wykorzystaniem serwera NodeJS + Express. Po stronie
+                klienta wykorzystywana jest biblioteka jQuery (żądania AJAX) oraz Bootstrap (ostylowanie).</p>
             <p>Przy połączeniu serwer generuje liczbę z zakresu 1-10000. Klient generuje liczbę z tego samego zakresu i wysyła
                 ją do serwera. Serwer odsyła informację czy liczba jest mniejsza, większa czy taka sama, jak wygenerowana
                 przez niego. Jeśli liczba nie jest taka sama, klient próbuje po raz kolejny, tym razem generując już liczbę
-                z nowego zakresu, dostosowanego do poprzedniej odpowiedzi serwera. Aplikacja kończy działanie, kiedy klient zgaduje liczbę.</p>
+                z nowego zakresu, dostosowanego do poprzedniej odpowiedzi serwera. Aplikacja kończy działanie, kiedy klient
+                zgaduje liczbę.</p>
 
             <button class="btn btn-primary btn-block">
-          Wylosuj liczbę
-        </button>
+                Wylosuj liczbę
+            </button>
+
             <button class="btn btn-danger btn-block">
-            Resetuj
-        </button>
+                Resetuj
+            </button>
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
 </body>
-
 </html>
